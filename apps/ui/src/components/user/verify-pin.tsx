@@ -11,11 +11,11 @@ import {
 import { FC, useState } from "react";
 
 type VerifyPinProps = {
-  userId: string;
+  profileId: string;
   onVerify: () => void;
 };
 
-const VerifyPin: FC<VerifyPinProps> = ({ userId, onVerify }) => {
+const VerifyPin: FC<VerifyPinProps> = ({ profileId, onVerify }) => {
   // Hooks
   const [isLoading, setIsLoading] = useState(false);
   const [isInvalid, setIsInvalid] = useState(false);
@@ -43,7 +43,7 @@ const VerifyPin: FC<VerifyPinProps> = ({ userId, onVerify }) => {
     setIsInvalid(false);
 
     await sleep(500);
-    await mutation.mutateAsync({ id: userId, pin });
+    await mutation.mutateAsync({ id: profileId, pin });
     onVerify();
   };
 

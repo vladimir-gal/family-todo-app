@@ -16,10 +16,17 @@ import { FC, useEffect, useState } from "react";
 
 const Home: FC = () => {
   const [isMounted, setIsMounted] = useState(false);
-  const { step, setStep, selectProfileId, resetStepIfNeeded } =
-    useApplicationState();
+  const {
+    step,
+    setStep,
+    selectProfileId,
+    resetStepIfNeeded,
+    selectedProfileId,
+  } = useApplicationState();
 
-  const { data } = getUserQuery("1").useOnClient();
+  const { data } = getUserQuery(
+    "7d24dd6c-c47d-4d5b-b854-39856844e803"
+  ).useOnClient();
 
   useEffect(() => {
     setIsMounted(true);
@@ -44,7 +51,7 @@ const Home: FC = () => {
       )}
       {step === ApplicationStep.VerifyPin && (
         <VerifyPin
-          userId={data!.id}
+          profileId={selectedProfileId}
           onVerify={() => setStep(ApplicationStep.Application)}
         />
       )}

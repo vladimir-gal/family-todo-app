@@ -21,7 +21,7 @@ export type Api = {
 };
 
 const api = (): Api => {
-  const baseUrl = "http://localhost:3001";
+  const baseUrl = "http://localhost:3000";
 
   const headers = {
     "Content-Type": "application/json",
@@ -61,13 +61,14 @@ const api = (): Api => {
     },
     post: async (endpoint: string, body: unknown) => {
       try {
-        const response = await fetch(baseUrl + endpoint, {
+        const res = await axios({
           method: "POST",
+          url: buildUrl(endpoint),
           headers,
-          body: JSON.stringify(body),
+          data: body,
         });
 
-        return response.json();
+        return Promise.resolve(res?.data);
       } catch (err) {
         return Promise.reject(err);
       }

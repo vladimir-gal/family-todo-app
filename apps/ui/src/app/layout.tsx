@@ -23,7 +23,9 @@ type RootLayoutProps = {
 const RootLayout: FC<RootLayoutProps> = async (props) => {
   const queryClient = new QueryClient();
 
-  await getUserQuery("1").useOnServer(queryClient);
+  await getUserQuery("7d24dd6c-c47d-4d5b-b854-39856844e803").useOnServer(
+    queryClient
+  );
 
   return (
     <html lang="en" suppressHydrationWarning>

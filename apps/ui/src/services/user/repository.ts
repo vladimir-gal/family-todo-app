@@ -9,12 +9,12 @@ export type UserRepository = {
 
 const repository = (api: Api): UserRepository => ({
   getUser: async (id: string) => {
-    const data = await api.get<User, { id: string }>("/user", { id });
+    const data = await api.get<User, { id: string }>("/users", { id });
     return data;
   },
-  updateUser: (user: UpdateUser) => api.put("/user", user),
+  updateUser: (user: UpdateUser) => api.put("/users", user),
   verifyPin: (params: { id: string; pin: string }) =>
-    api.post("/profile/verify-pin", params),
+    api.post("/profiles/verify-pin", params),
 });
 
 const userRepository = repository(api());
